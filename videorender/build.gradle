@@ -1,0 +1,48 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 29
+
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_ARM_NEON=TRUE",
+                          "-DANDROID_TOOLCHAIN=clang",
+                          "-DANDROID_STL=c++_shared",
+                          "-DANDROID_API=21",
+                          "-DCMAKE_BUILD_TYPE=RelWithDebInfo"
+                cppFlags "-std=c++11", "-fvisibility=hidden -fvisibility-inlines-hidden", "-ffunction-sections -fdata-sections"
+                cFlags "-ffunction-sections -fdata-sections"
+                abiFilters "armeabi-v7a", "arm64-v8a"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+
+        debug {
+            debuggable true
+            jniDebuggable true
+            consumerProguardFiles 'consumer-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+    ndkVersion '21.1.6352462'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
