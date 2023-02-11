@@ -131,7 +131,7 @@ static JNINativeMethod renderProcessMethods[] = {
     {"updateFilter", "(JILjava/lang/String;)V", (void **) RENDERSDK_render_process_update_filter },
     {"updateFilterIntensity", "(JII)V", (void **) RENDERSDK_render_process_update_filter_intensity },
     {"deleteFilter", "(JI)V", (void **) RENDERSDK_render_process_delete_filter },
-    {"captureFrame", "(JLcom/shizhuang/videorender/listener/OnCaptureListener;)V", (void **) RENDERSDK_render_process_capture_frame },
+    {"captureFrame", "(JLcom/jeffmony/videorender/listener/OnCaptureListener;)V", (void **) RENDERSDK_render_process_capture_frame },
     {"setMirror", "(JI)V", (void **) RENDERSDK_render_process_set_mirror_type },
     {"destroy", "(J)V", (void **) RENDERSDK_render_process_destroy },
 };
