@@ -3,7 +3,6 @@ package com.jeffmony.playerdemo;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -48,19 +47,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == mTextureViewBtn) {
-            playWithTextureView();
+//            playWithTextureView();
         } else if (v == mSurfaceViewBtn) {
-            playWithSurfaceView();
+//            playWithSurfaceView();
         }
     }
 
-    private void playWithTextureView() {
-        Intent intent = new Intent(MainActivity.this, TextureViewActivity.class);
-        startActivity(intent);
-    }
-
-    private void playWithSurfaceView() {
-        Intent intent = new Intent(MainActivity.this, SurfaceViewActivity.class);
-        startActivity(intent);
-    }
+//    private void playWithTextureView() {
+//        Intent intent = new Intent(MainActivity.this, TextureViewActivity.class);
+//        startActivity(intent);
+//    }
+//
+//    private void playWithSurfaceView() {
+//        Intent intent = new Intent(MainActivity.this, SurfaceViewActivity.class);
+//        startActivity(intent);
+//    }
 }
