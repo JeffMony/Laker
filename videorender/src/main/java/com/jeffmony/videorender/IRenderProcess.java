@@ -39,5 +39,7 @@ public interface IRenderProcess {
 
     void setMirror(MirrorType type);
 
+    MirrorType getMirrorType();
+
     void destroy();
 }

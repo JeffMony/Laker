@@ -25,6 +25,7 @@ public class RenderProcessImpl implements IRenderProcess, VideoSurfaceView.Surfa
     private OnRenderListener mOnRenderListener;
     private int mSurfaceWidth;
     private int mSurfaceHeight;
+    private MirrorType mMirrorType = MirrorType.NONE;
     /**
      * 设置给MediaCodec的SurfaceTexture
      */
@@ -238,7 +239,13 @@ public class RenderProcessImpl implements IRenderProcess, VideoSurfaceView.Surfa
         if (mId == 0) {
             return;
         }
+        mMirrorType = type;
         setMirror(mId, type.ordinal());
+    }
+
+    @Override
+    public MirrorType getMirrorType() {
+        return mMirrorType;
     }
 
     @Override
