@@ -111,6 +111,8 @@ class RenderProcess : public thread::HandlerCallback {
 
   void OnError(int code);
 
+  void OnError(JNIEnv *env, int code, jobject listener);
+
  private:
   jobject render_process_object_;
   int surface_width_;

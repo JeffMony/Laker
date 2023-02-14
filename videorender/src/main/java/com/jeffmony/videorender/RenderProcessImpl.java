@@ -1,5 +1,6 @@
 package com.jeffmony.videorender;
 
+import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.os.Handler;
 import android.os.Looper;
@@ -305,6 +306,28 @@ public class RenderProcessImpl implements IRenderProcess, VideoSurfaceView.Surfa
         mMainHandler.post(() -> {
             if (mOnRenderListener != null) {
                 mOnRenderListener.onError(code);
+            }
+        });
+    }
+
+    private void onCaptureSuccess(Bitmap bitmap, OnCaptureListener listener) {
+        if (listener == null) {
+            return;
+        }
+        mMainHandler.post(() -> {
+            if (listener != null) {
+                listener.onSuccess(bitmap);
+            }
+        });
+    }
+
+    private void onCaptureFailed(int code, OnCaptureListener listener) {
+        if (listener == null) {
+            return;
+        }
+        mMainHandler.post(() -> {
+            if (listener != null) {
+                listener.onError(code);
             }
         });
     }

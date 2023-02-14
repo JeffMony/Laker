@@ -582,12 +582,7 @@ void RenderProcess::GenerateBitmap(int width, int height, jobject listener) {
     if (ret < 0) {
       LOGE("%s %s %d AndroidBitmap_lockPixels() failed !", __FILE_NAME__, __func__ , __LINE__);
       if (listener != nullptr) {
-        auto clazz = env->GetObjectClass(listener);
-        jmethodID error_method = env->GetMethodID(clazz, "onError", "(I)V");
-        if (error_method != nullptr) {
-          env->CallVoidMethod(listener, error_method, ret);
-        }
-        env->DeleteLocalRef(clazz);
+        OnError(env, ret, listener);
         env->DeleteGlobalRef(listener);
       }
       if (ret == JNI_EDETACHED) {
@@ -600,12 +595,7 @@ void RenderProcess::GenerateBitmap(int width, int height, jobject listener) {
     if (ret < 0) {
       LOGE("%s %s %d AndroidBitmap_unlockPixels() failed !", __FILE_NAME__, __func__ , __LINE__);
       if (listener != nullptr) {
-        auto clazz = env->GetObjectClass(listener);
-        jmethodID error_method = env->GetMethodID(clazz, "onError", "(I)V");
-        if (error_method != nullptr) {
-          env->CallVoidMethod(listener, error_method, ret);
-        }
-        env->DeleteLocalRef(clazz);
+        OnError(env, ret, listener);
         env->DeleteGlobalRef(listener);
       }
       if (ret == JNI_EDETACHED) {
@@ -618,11 +608,11 @@ void RenderProcess::GenerateBitmap(int width, int height, jobject listener) {
     memset(img_buffer, 0, 4 * width * height);
     SAFE_DELETE_ARRAY(img_buffer)
 
-    if (listener != nullptr) {
-      auto clazz = env->GetObjectClass(listener);
-      jmethodID bitmap_complete_method = env->GetMethodID(clazz, "onSuccess", "(Landroid/graphics/Bitmap;)V");
+    if (listener != nullptr && render_process_object_ != nullptr) {
+      auto clazz = env->GetObjectClass(render_process_object_);
+      jmethodID bitmap_complete_method = env->GetMethodID(clazz, "onCaptureSuccess", "(Landroid/graphics/Bitmap;Lcom/jeffmony/videorender/listener/OnCaptureListener;)V");
       if (bitmap_complete_method != nullptr) {
-        env->CallVoidMethod(listener, bitmap_complete_method, new_bitmap);
+        env->CallVoidMethod(render_process_object_, bitmap_complete_method, new_bitmap, listener);
       }
       env->DeleteLocalRef(clazz);
       env->DeleteGlobalRef(listener);
@@ -650,6 +640,18 @@ void RenderProcess::OnError(int code) {
   if (ret == JNI_EDETACHED) {
     detach_env();
   }
+}
+
+void RenderProcess::OnError(JNIEnv *env, int code, jobject listener) {
+  if (render_process_object_ == nullptr) {
+    return;
+  }
+  auto clazz = env->GetObjectClass(render_process_object_);
+  jmethodID capture_error_method = env->GetMethodID(clazz, "onCaptureFailed", "(ILcom/jeffmony/videorender/listener/OnCaptureListener;)V");
+  if (capture_error_method != nullptr) {
+    env->CallVoidMethod(render_process_object_, capture_error_method, code, listener);
+  }
+  env->DeleteLocalRef(clazz);
 }
 
 void RenderProcess::HandleMessage(thread::Message *msg) {
