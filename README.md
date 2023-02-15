@@ -9,6 +9,30 @@
 - 支持左右翻转视频
 - 支持设置特定滤镜
 
+### 接入SDK
+工程的build.gradle中添加
+```
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url 'https://jitpack.io'
+        }
+    }
+}
+```
+app的build.gradle中添加
+```
+dependencies {
+    implementation 'com.github.JeffMony:Laker:1.0.4'
+}
+```
+目前最新的版本是1.0.4，后续直接看tag上版本的更新,
+
+具体接入的流程可以查看我在播放器SDK中应用的例子：
+[播放器渲染例子](https://github.com/JeffMony/PlayerSDK)
+
 ### 设置贴纸
 ```
 {
