@@ -1,6 +1,7 @@
 -keep class com.jeffmony.videorender.RenderSdk { *; }
 -keep class com.jeffmony.videorender.RenderProcessImpl { *; }
 -keep class com.jeffmony.videorender.ImageUtils { *; }
+-keep class com.jeffmony.videorender.ColorAdjustUtils { *; }
 -keep class com.jeffmony.videorender.LogTag { *; }
 -keep class com.jeffmony.videorender.view.VideoSurfaceView { *; }
 
@@ -13,3 +14,5 @@
 
 -keep class com.jeffmony.videorender.view.VideoSurfaceView { *; }
 -keep interface com.jeffmony.videorender.view.VideoSurfaceView$* { *; }
+
+-keep enum com.jeffmony.videorender.MirrorType { *; }
