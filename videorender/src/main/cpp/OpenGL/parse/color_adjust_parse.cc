@@ -21,6 +21,8 @@ int ColorAdjustParse::Parse(const Json::Value &item,
 int ColorAdjustParse::ParseColorAdjustResource(const Json::Value &item,
                                                ColorAdjustSubEffect *color_adjust,
                                                bool encrypt) {
+  color_adjust->type.clear();
+  color_adjust->type.append(item["type"].asString());
   auto method_bit_json = item["method_bit"];
   if (!method_bit_json.isNull()) {
     auto method_bit = method_bit_json.asInt();

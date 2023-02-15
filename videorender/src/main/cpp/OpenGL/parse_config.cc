@@ -136,6 +136,22 @@ int ParseConfig::UpdateEffectConfig(const int effect_id,
         if (ret != 0) {
           return ret;
         }
+      } else if (type == "color_adjust") {
+        ColorAdjustSubEffect *color_adjust_sub_effect = nullptr;
+        for (auto sub_effect : sub_effects) {
+          if (type == sub_effect->type) {
+            color_adjust_sub_effect = reinterpret_cast<ColorAdjustSubEffect *>(sub_effect);
+            break;
+          }
+        }
+        if (color_adjust_sub_effect == nullptr) {
+          LOGE("%s %s %d find: %s color_adjust sub effect error.", __FILE_NAME__, __func__ , __LINE__, name.c_str());
+          return -4;
+        }
+        int ret = ColorAdjustParse::ParseColorAdjustResource(effect_item, color_adjust_sub_effect, encrypt);
+        if (ret != 0) {
+          return ret;
+        }
       }
     }
   }
