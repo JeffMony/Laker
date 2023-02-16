@@ -124,7 +124,7 @@ int ParseConfig::UpdateEffectConfig(const int effect_id,
       if (type == "background") {
         BackgroundSubEffect *background_sub_effect = nullptr;
         for (auto sub_effect : sub_effects) {
-          if (name == sub_effect->name) {
+          if (type == sub_effect->type) {
             background_sub_effect = reinterpret_cast<BackgroundSubEffect *>(sub_effect);
           }
         }
@@ -149,6 +149,22 @@ int ParseConfig::UpdateEffectConfig(const int effect_id,
           return -4;
         }
         int ret = ColorAdjustParse::ParseColorAdjustResource(effect_item, color_adjust_sub_effect, encrypt);
+        if (ret != 0) {
+          return ret;
+        }
+      } else if (type == "sticker") {
+        StickerSubEffect *sticker_sub_effect = nullptr;
+        for (auto sub_effect : sub_effects) {
+          if (type == sub_effect->type) {
+            sticker_sub_effect = reinterpret_cast<StickerSubEffect *>(sub_effect);
+            break;
+          }
+        }
+        if (sticker_sub_effect == nullptr) {
+          LOGE("%s %s %d find: %s sticker sub effect error.", __FILE_NAME__, __func__ , __LINE__, name.c_str());
+          return -5;
+        }
+        int ret = StickerParse::ParseStickerResource(effect_item, sticker_sub_effect, encrypt);
         if (ret != 0) {
           return ret;
         }

@@ -41,6 +41,7 @@ int StickerParse::ParseStickerResource(const Json::Value &item,
       return ret;
     }
   }
+  sticker_sub_effect->type.append(item["type"].asString());
   auto start_time = item["startTime"].asInt();
   int end_time = INT32_MAX;
   auto end_time_json = item["endTime"];

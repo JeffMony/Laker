@@ -1,4 +1,4 @@
-package com.jeffmony.videorender;
+package com.jeffmony.videorender.effect;
 
 public class ColorAdjustUtils {
 
