@@ -35,24 +35,30 @@ file(
         effect_source
         OpenGL/egl/egl_core.cc
         OpenGL/gl/background.cc
+        OpenGL/gl/black_white_buffer.cc
         OpenGL/gl/blend.cc
         OpenGL/gl/color_adjust.cc
         OpenGL/gl/filter.cc
         OpenGL/gl/frame_buffer.cc
         OpenGL/gl/gaussian_blur.cc
         OpenGL/gl/gradual_blur.cc
+        OpenGL/gl/grid_buffer.cc
         OpenGL/gl/opengl.cc
         OpenGL/gl/process_buffer.cc
         OpenGL/gl/program.cc
         OpenGL/gl/shape_mask.cc
         OpenGL/parse/background_parse.cc
+        OpenGL/parse/black_white_parse.cc
         OpenGL/parse/color_adjust_parse.cc
         OpenGL/parse/gradual_blur_parse.cc
+        OpenGL/parse/grid_parse.cc
         OpenGL/parse/shape_mask_parse.cc
         OpenGL/parse/sticker_parse.cc
         OpenGL/sub_effect/background_sub_effect.cc
+        OpenGL/sub_effect/black_white_sub_effect.cc
         OpenGL/sub_effect/color_adjust_sub_effect.cc
         OpenGL/sub_effect/gradual_blur_sub_effect.cc
+        OpenGL/sub_effect/grid_sub_effect.cc
         OpenGL/sub_effect/shape_mask_sub_effect.cc
         OpenGL/sub_effect/sticker_sub_effect.cc
         OpenGL/sub_effect/sub_effect.cc

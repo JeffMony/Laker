@@ -5,19 +5,22 @@
 #include <string>
 #include "tools.h"
 #include "parse/background_parse.h"
+#include "parse/black_white_parse.h"
 #include "parse/sticker_parse.h"
 #include "parse/color_adjust_parse.h"
 #include "parse/shape_mask_parse.h"
 #include "parse/gradual_blur_parse.h"
+#include "parse/grid_parse.h"
 
 namespace effect {
 
-int ParseConfig::ParseEffectConfig(const int effect_id,
-                                   const char *config_path,
-                                   const char *extra_path,
-                                   EffectInputType type,
-                                   std::list<SubEffect *> &sub_effects,
-                                   bool encrypt) {
+int ParseConfig::ParseEffectConfig(
+    const int effect_id,
+    const char *config_path,
+    const char *extra_path,
+    EffectInputType type,
+    std::list<SubEffect *> &sub_effects,
+    bool encrypt) {
   Json::Value root;
   JSONCPP_STRING err;
   if (type == kEffectInputFile) {
@@ -87,17 +90,30 @@ int ParseConfig::ParseEffectConfig(const int effect_id,
       if (ret != 0) {
         return ret;
       }
+    } else if (effect_type.find("black_white") != std::string::npos) {
+      /// 黑白滤镜
+      int ret = BlackWhiteParse::Parse(effect_item, config_path, sub_effects, encrypt);
+      if (ret != 0) {
+        return ret;
+      }
+    } else if (effect_type.find("grid") != std::string::npos) {
+      /// 宫格滤镜
+      int ret = GridParse::Parse(effect_item, config_path, sub_effects, encrypt);
+      if (ret != 0) {
+        return ret;
+      }
     }
   }
   return 0;
 }
 
-int ParseConfig::UpdateEffectConfig(const int effect_id,
-                                    const char *config,
-                                    const char *extra_path,
-                                    EffectInputType input_type,
-                                    std::list<SubEffect *> &sub_effects,
-                                    bool encrypt) {
+int ParseConfig::UpdateEffectConfig(
+    const int effect_id,
+    const char *config,
+    const char *extra_path,
+    EffectInputType input_type,
+    std::list<SubEffect *> &sub_effects,
+    bool encrypt) {
   if (input_type == EffectInputType::kEffectInputBuffer) {
     Json::Value root;
     Json::CharReaderBuilder builder;

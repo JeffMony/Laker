@@ -20,12 +20,13 @@ class ParseConfig {
    * @param encrypt 输入的文件是否加密
    * @return 返回0成功, 其它解析失败
    */
-  static int ParseEffectConfig(const int effect_id,
-                               const char* config_path,
-                               const char* extra_path,
-                               EffectInputType type,
-                               std::list<SubEffect*>& sub_effects,
-                               bool encrypt = false);
+  static int ParseEffectConfig(
+      const int effect_id,
+      const char* config_path,
+      const char* extra_path,
+      EffectInputType type,
+      std::list<SubEffect*>& sub_effects,
+      bool encrypt = false);
 
   /**
    * 解析一个特效json
@@ -36,12 +37,13 @@ class ParseConfig {
    * @param encrypt 输入的文件是否加密
    * @return 返回0成功, 其它解析失败
    */
-  static int UpdateEffectConfig(const int effect_id,
-                                const char* config,
-                                const char* extra_path,
-                                EffectInputType input_type,
-                                std::list<SubEffect*>& sub_effects,
-                                bool encrypt = false);
+  static int UpdateEffectConfig(
+      const int effect_id,
+      const char* config,
+      const char* extra_path,
+      EffectInputType input_type,
+      std::list<SubEffect*>& sub_effects,
+      bool encrypt = false);
 
 };
 
