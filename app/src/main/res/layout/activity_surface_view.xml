@@ -1,49 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SurfaceViewActivity">
 
     <RelativeLayout
         android:id="@+id/parent_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
         
+        <LinearLayout
+            android:id="@+id/bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+            <TextView
+                android:id="@+id/adjust_text_view"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="调整亮度"
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <SeekBar
+                android:id="@+id/adjust_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <com.jeffmony.videorender.view.VideoSurfaceView
             android:id="@+id/video_surface_view"
             android:layout_centerInParent="true"
             android:layout_width="match_parent"
-            android:layout_height="290dp" />
+            android:layout_height="200dp" />
 
         <LinearLayout
-            android:id="@+id/func_layout_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/layout_1"
+            android:orientation="horizontal"
             android:layout_alignParentTop="true"
-            android:orientation="horizontal" >
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
             <Button
-                android:id="@+id/btn_play_pause"
+                android:id="@+id/reset_btn"
+                android:text="复原"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+            
+            <Button
+                android:id="@+id/play_pause_btn"
                 android:text="暂停"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
-            
+
             <Button
-                android:id="@+id/btn_horizontal_mirror"
+                android:id="@+id/horizontal_btn"
                 android:text="水平镜像"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-            
-            <Button
-                android:id="@+id/btn_vertical_mirror"
-                android:text="垂直镜像"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btn_mirror_none"
-                android:text="正常镜像"
+                android:id="@+id/vertical_btn"
+                android:text="垂直镜像"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -51,72 +78,73 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/func_layout_2"
-            android:layout_below="@+id/func_layout_1"
+            android:id="@+id/layout_2"
+            android:layout_below="@+id/layout_1"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="wrap_content" >
 
             <Button
-                android:id="@+id/btn_capture"
-                android:text="截图"
+                android:id="@+id/capture_btn"
+                android:text="截屏"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btn_filter"
+                android:id="@+id/filter_btn"
                 android:text="滤镜"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
-            
+
             <Button
-                android:id="@+id/btn_bright"
+                android:id="@+id/sticker_btn"
+                android:text="贴纸"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/high_btn"
+                android:text="一键高清"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_3"
+            android:layout_below="@+id/layout_2"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <Button
+                android:id="@+id/bright_btn"
                 android:text="亮度"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btn_contrast"
+                android:id="@+id/contrast_btn"
                 android:text="对比度"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/func_layout_3"
-            android:layout_below="@+id/func_layout_2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
             <Button
-                android:id="@+id/btn_temperature"
+                android:id="@+id/temperature_btn"
                 android:text="色温"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
 
             <Button
-                android:id="@+id/btn_saturation"
+                android:id="@+id/saturation_btn"
                 android:text="饱和度"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_grain"
-                android:text="颗粒度"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:id="@+id/btn_sharp"
-                android:text="锐度"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
@@ -124,37 +152,43 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/func_layout_4"
-            android:layout_below="@+id/func_layout_3"
+            android:id="@+id/layout_4"
+            android:layout_below="@+id/layout_3"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_height="wrap_content" >
+
             <Button
-                android:id="@+id/btn_sticker"
-                android:text="贴纸"
+                android:id="@+id/grain_btn"
+                android:text="颗粒度"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
             <Button
-                android:id="@+id/btn_color"
-                android:text="调优"
+                android:id="@+id/sharp_btn"
+                android:text="锐度"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
             <Button
-                android:visibility="invisible"
-                android:text="贴纸"
+                android:id="@+id/grid_btn"
+                android:text="四分镜"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
             <Button
-                android:visibility="invisible"
-                android:text="贴纸"
+                android:id="@+id/wb_btn"
+                android:text="黑白"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </RelativeLayout>
+
 
 </LinearLayout>
